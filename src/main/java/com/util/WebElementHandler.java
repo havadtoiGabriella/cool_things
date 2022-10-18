@@ -23,10 +23,10 @@ public final class WebElementHandler {
 
     public static void clickOn(WebElement element, ChromeDriver driver) {
         LOGGER.debug("Clicking on the element.");
-//        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
-//        wait.withTimeout(ofSeconds(WAIT_TIMEOUT)).until(elementToBeClickable(element));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).perform();
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+        wait.withTimeout(ofSeconds(WAIT_TIMEOUT)).until(elementToBeClickable(element));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         element.click();
     }
 
